@@ -10,6 +10,4 @@ Phuong pháp gồm có 3 bước được thực hiện trong mỗi round toàn 
 - Sau khi các client đã gửi mô hình về lần thứ 2, server sẽ bắt đầu thực hiện tổng hợp mô hình
 
 Nhận xét:
-
-- Phương pháp này có thể giải quyết vấn đề non-iid khá tốt, đặc biệt là với trường hợp mà client bị mất cân bằng dữ liệu nghiêm trọng hay trường hợp (*)
-- Mỗi vòng huấn luyện có thể mất nhiều thời gian hơn so với bình thường tuy nhiên mô hình sẽ hội tụ với ít vòng toàn cầu hơn so với Strategy thông thường.
+- Có tiềm năng nếu giải quyết được vấn đề chọn client để gửi một mô hình đến thay vì random
