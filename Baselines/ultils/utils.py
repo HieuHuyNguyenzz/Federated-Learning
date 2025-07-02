@@ -4,6 +4,7 @@ from typing import List, Dict
 import random
 import math
 import torch
+import yaml
 
 seed_value = 42
 random.seed(seed_value)
@@ -36,4 +37,7 @@ def set_parameters(net, parameters: List[np.ndarray]):
     params_dict = zip(net.state_dict().keys(), parameters)
     state_dict = OrderedDict({k: torch.tensor(v) for k, v in params_dict})
     net.load_state_dict(state_dict)
-   
+
+def load_config(path="config.yaml"):
+    with open(path, "r") as f:
+        return yaml.safe_load(f)

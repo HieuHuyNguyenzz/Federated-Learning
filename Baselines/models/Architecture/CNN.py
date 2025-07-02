@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 
-class fCNN(nn.Module):
+class CNN(nn.Module):
     def __init__(self, in_channels=1, num_classes=10) -> None:
-        super(fCNN, self).__init__()
+        super(CNN, self).__init__()
 
         self.conv1 = nn.Sequential(
             nn.Conv2d(in_channels, 32, 5),

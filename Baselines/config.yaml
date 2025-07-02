@@ -1,0 +1,18 @@
+training:
+  batch_size: 32
+  local_epochs: 1
+  learning_rate: 0.01
+  decay_rate: 0.995
+
+flwr:
+  num_rounds: 10
+  num_clients: 5
+
+dataset:
+  name: mnist
+  alpha: 100
+
+model:
+  name: cnn
+  input_shape: [1, 28, 28]
+  num_classes: 10
