@@ -1,4 +1,4 @@
-from FL import ClientManager, FedAvg, FlowerClient
+from FL import ClientManager, FlowerClient
 import flwr as fl
 import torch
 from torch.utils.data import Subset
@@ -6,9 +6,10 @@ import random
 from flwr.common import ndarrays_to_parameters, Context
 from utils import load_data, load_config, get_parameters, data_partition, to_dataloader
 from models.get_model import get_model
+from FedAdp import FedAdp
 
 
-class FedAvgSimulation:
+class Simulation:
     def __init__(self, config_path: str = None):
         self.config = load_config(config_path) if config_path else load_config()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -54,7 +55,7 @@ class FedAvgSimulation:
         )
         initial_params = ndarrays_to_parameters(get_parameters(model))
 
-        strategy = FedAvg(
+        strategy = FedAdp(
             num_rounds=self.config['flwr']['num_rounds'],
             num_clients=self.config['flwr']['num_clients'],
             fraction_fit=self.config['flwr']['fraction_fit'],

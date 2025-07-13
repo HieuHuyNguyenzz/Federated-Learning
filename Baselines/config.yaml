@@ -6,8 +6,8 @@ training:
   decay_rate: 1
 
 flwr:
-  algo: FedAvg
-  num_rounds: 10
+  algo: FedProx
+  num_rounds: 3
   num_clients: 10
   fraction_fit: 0.1
   client_resource: { "num_cpus": 5, "num_gpus": 1 }
