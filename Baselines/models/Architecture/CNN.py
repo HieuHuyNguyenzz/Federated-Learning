@@ -2,11 +2,11 @@ import torch
 import torch.nn as nn
 
 class CNN(nn.Module):
-    def __init__(self, in_channels=1, num_classes=10) -> None:
+    def __init__(self, input_shape = [1, 28, 28], num_classes=10) -> None:
         super(CNN, self).__init__()
 
         self.conv1 = nn.Sequential(
-            nn.Conv2d(in_channels, 32, 5),
+            nn.Conv2d(input_shape[0], 32, 5),
             nn.ReLU(),
             nn.MaxPool2d(2)
         )

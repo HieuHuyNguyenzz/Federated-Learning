@@ -1,4 +1,4 @@
-from Architecture import MLP, CNN, CNN4, ResNet18, ResNet34, ResNet50, ResNet101,  VGG11, VGG16, AlexNet
+from models.Architecture import MLP, CNN, CNN4, ResNet18, ResNet34, ResNet50, ResNet101,  VGG11, VGG16, AlexNet
 
 def get_model(model_name, input_shape, num_classes):
     """

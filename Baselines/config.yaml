@@ -1,18 +1,42 @@
+# config for mnist dataset
 training:
   batch_size: 32
   local_epochs: 1
   learning_rate: 0.01
-  decay_rate: 0.995
+  decay_rate: 1
 
 flwr:
+  algo: FedAvg
   num_rounds: 10
-  num_clients: 5
+  num_clients: 10
+  fraction_fit: 0.1
+  client_resource: { "num_cpus": 5, "num_gpus": 1 }
 
 dataset:
   name: mnist
   alpha: 100
 
 model:
-  name: cnn
+  name: CNN
   input_shape: [1, 28, 28]
   num_classes: 10
+#
+# config for cifar10 dataset
+# training:
+#   batch_size: 32
+#   local_epochs: 1
+#   learning_rate: 0.01
+#   decay_rate: 0.995
+
+# flwr:
+#   num_rounds: 10
+#   num_clients: 5
+
+# dataset:
+#   name: cifar10
+#   alpha: 100
+
+# model:
+#   name: cnn
+#   input_shape: [3, 32, 32]
+#   num_classes: 10

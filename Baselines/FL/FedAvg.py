@@ -18,6 +18,9 @@ import numpy as np
 import pandas as pd
 from typing import List, Tuple, Dict, Union, Optional, Callable
 from functools import reduce 
+from utils import load_config
+
+config = load_config()
 
 def aggregate(results: list[tuple[NDArrays, float]]) -> NDArrays:
     """Compute weighted average."""
@@ -39,7 +42,7 @@ class FedAvg(fl.server.strategy.Strategy):
         num_clients: int,
         fraction_fit: float = 1.0,
         fraction_evaluate: float = 0.0,
-        min_fit_clients: int = 2,
+        min_fit_clients: int = 0,
         min_evaluate_clients: int = 0,
         min_available_clients: int = 0,
         learning_rate: float = 0.1,
@@ -157,7 +160,7 @@ class FedAvg(fl.server.strategy.Strategy):
         self.result["test_accuracy"].append(metrics["accuracy"])
         if server_round == self.num_rounds:
             df = pd.DataFrame(self.result)
-            df.to_csv(f"result/fedavg.csv", index=False)
+            df.to_csv(f"result/{self.algorithm}_{config['model']['name']}_{config['dataset']["name"]}_{config['dataset']['alpha']}.csv", index=False)
         return loss, metrics
 
     def num_fit_clients(self, num_available_clients: int) -> Tuple[int, int]:
