@@ -6,7 +6,7 @@ import random
 from flwr.common import ndarrays_to_parameters, Context
 from utils import load_data, load_config, get_parameters, data_partition, to_dataloader
 from models.get_model import get_model
-from FedAdp import FedAdp
+from .FedAdp import FedAdp
 
 
 class Simulation:
@@ -25,7 +25,7 @@ class Simulation:
 
     def _prepare_data(self):
         trainset, _ = load_data(self.config['dataset']['name'])
-        client_dict = data_partition(trainset, self.config['flwr']['num_clients'], self.config['dataset']['alpha'])
+        client_dict, _ = data_partition(trainset, self.config['flwr']['num_clients'], self.config['dataset']['alpha'])
 
         for i in range(self.config['flwr']['num_clients']):
             client_subset = Subset(trainset, client_dict[i])

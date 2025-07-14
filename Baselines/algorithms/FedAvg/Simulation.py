@@ -23,9 +23,9 @@ class Simulation:
             torch.cuda.manual_seed_all(seed_value)
 
     def _prepare_data(self):
-        trainset, _ = load_data(self.config['dataset']['name'])
-        client_dict = data_partition(trainset, self.config['flwr']['num_clients'], self.config['dataset']['alpha'])
-
+        trainset, testset = load_data(self.config['dataset']['name'])
+        client_dict, _ = data_partition(trainset, self.config['flwr']['num_clients'], self.config['dataset']['alpha'])
+        
         for i in range(self.config['flwr']['num_clients']):
             client_subset = Subset(trainset, client_dict[i])
             self.trainloaders.append(to_dataloader(client_subset))

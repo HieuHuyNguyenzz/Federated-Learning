@@ -25,6 +25,7 @@ class FedAdp(FedAvg):
         min_available_clients: int = 0,
         learning_rate: float = 0.1,
         decay_rate: float = 0.995,
+        alpha: int = 5,
         current_parameters: Optional[Parameters] = None,
         evaluate_fn=None,
         test_dataset=None,
@@ -44,6 +45,8 @@ class FedAdp(FedAvg):
             evaluate_fn=evaluate_fn,
             test_dataset=test_dataset,
         )
+        self.alpha = alpha
+        self.current_angles = [None] * num_clients
 
     def aggregate_fit(
         self,
